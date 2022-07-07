@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import * as moment from 'moment';
+import { Moment } from 'moment';
+import { distinctUntilChanged, interval, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-first',
@@ -7,10 +10,28 @@ import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
   styleUrls: ['./first.component.css']
 })
 export class FirstComponent implements OnInit {
+  message: string;
+  sentAt: Date;
+  timeFromNow: Observable<string>;
+  pageLoaded: Moment;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+    this.message = "";
+    this.sentAt = new Date();
+
+    this.pageLoaded = moment(new Date());
+
+    this.timeFromNow = interval(1000).pipe(
+      map(() => {
+        return moment(this.pageLoaded).fromNow(true);
+      }
+      ),
+    );
+    this.timeFromNow.subscribe((value) => this.message = value);
+  }
 
   ngOnInit(): void {
+
     this.activatedRoute.queryParams.subscribe((params) => {
       let paramMap = convertToParamMap(params);
       for (let index = 0; index < paramMap.keys.length; index++) {
@@ -24,6 +45,7 @@ export class FirstComponent implements OnInit {
         }
       }
     });
+
   }
 
 }

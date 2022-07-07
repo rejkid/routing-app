@@ -8,13 +8,13 @@ import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'routing-app';
-  sentAt: Date;
+  
 
   constructor(private activatedRoute: ActivatedRoute, public router: Router) {
     // Checking if we can subscribe to 'queryParams' in ctor of app.component
     this.activatedRoute.queryParams.subscribe((params) => {
     });
-    this.sentAt  = new Date();
+    
   }
 
   clickFirst(event: any) {
