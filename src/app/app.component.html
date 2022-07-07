@@ -1,8 +1,11 @@
 <h1>Angular Router App</h1>
+<div class="container  text-center mt-5 mb-5">
+  <h1>Bootstrap 5 is working fine with Angular 13!!</h1>
+</div>
 <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
 <nav>
   <ul>
-    <li><a routerLink="/first-component" routerLinkActive="active" ariaCurrentWhenActive="page">First Component</a></li>
+    <li><a (click)="clickFirst($event)" [routerLink]="['/first-component']" [queryParams]="{param1:'value1, value2'}" routerLinkActive="active" ariaCurrentWhenActive="page">First Component</a></li>
     <li><a routerLink="/second-component" routerLinkActive="active" ariaCurrentWhenActive="page">Second Component</a></li>
   </ul>
 </nav>
