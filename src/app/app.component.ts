@@ -8,25 +8,23 @@ import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'routing-app';
+  sentAt: Date;
 
   constructor(private activatedRoute: ActivatedRoute, public router: Router) {
     // Checking if we can subscribe to 'queryParams' in ctor of app.component
     this.activatedRoute.queryParams.subscribe((params) => {
-
-      let paramMap = convertToParamMap(params);
-      //let parameterArray = paramMap.keys;//.
-      for (let index = 0; index < paramMap.keys.length; index++) {
-        let key = paramMap.keys[index];
-        const values = paramMap.getAll(key);
-        const value = paramMap.get(key);
-        console.log("Param:" + value);
-      }
     });
+    this.sentAt  = new Date();
   }
 
   clickFirst(event: any) {
 
     //this.router.navigate(['/first-component'], { queryParams: { param: 'first' } });
+    console.log(event);
+  }
+  clickFirstProg(event: any) {
+
+    this.router.navigate(['/first-component'], { queryParams: { param: ['value1', 'value2', 'value3'] } });
     console.log(event);
   }
 }
