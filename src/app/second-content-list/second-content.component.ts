@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/product.model';
 
 @Component({
@@ -11,7 +12,7 @@ export class SecondContentComponent implements OnInit {
    * @input productList - the Product[] passed to us
    */
  @Input()
-  productList: Product[] = [];
+  productList!: Observable<Product[]>;
 /**
    * @property currentProduct - local state containing
    *             the currently selected `Product`

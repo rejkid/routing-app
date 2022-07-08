@@ -1,7 +1,7 @@
 <p>second-content works!</p>
 <div class="ui items">
     <app-product-row
-      *ngFor="let myProduct of productList"
+      *ngFor="let myProduct of productList | async"
       [product]="myProduct"
       (click)='clicked(myProduct)'
       

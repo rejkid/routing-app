@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { from, Observable, of } from 'rxjs';
 import { Product } from '../product.model';
 
 @Component({
@@ -8,6 +9,7 @@ import { Product } from '../product.model';
   styleUrls: ['./second.component.css']
 })
 export class SecondComponent implements OnInit {
+  productsObs!: Observable<Product[]>;
   products: Product[];
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { 
@@ -31,6 +33,7 @@ export class SecondComponent implements OnInit {
         ['Men', 'Accessories', 'Hats'],
         29.99)
       ];
+      this.productsObs = of(this.products);
   }
 
   ngOnInit(): void {
