@@ -40,4 +40,11 @@ export class SecondContentComponent implements OnInit {
     }
     return product.sku === this.currentProduct.sku;
   }
+  mouseOver(product: Product){
+    console.log("Mouseover over");
+  }
+
+  mouseLeave(product: Product){
+    console.log("Mouseout called");
+  }
 }
