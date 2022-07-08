@@ -1,1 +1,7 @@
 <p>second works!</p>
+<div class="inventory-app">
+    <app-second-content
+      [productList]="products"
+      (onProductSelected)="productWasSelected($event)">
+    </app-second-content>
+  </div>
