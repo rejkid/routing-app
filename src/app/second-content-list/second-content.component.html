@@ -1,11 +1,8 @@
 <p>second-content works!</p>
 <div class="ui items">
-    <app-product-row
-      *ngFor="let myProduct of productList | async"
-      [product]="myProduct"
-      (click)='clicked(myProduct)'
-      
-      [ngClass]="{ 'selected': isSelected(myProduct) }"
-      >
-    </app-product-row>
-  </div>
+  <app-product-row *ngFor="let myProduct of productList | async" 
+    [product]="myProduct" 
+    (click)='clicked(myProduct)'
+    [ngClass]="{ 'text-primary': isSelected(myProduct) }">
+  </app-product-row>
+</div>
