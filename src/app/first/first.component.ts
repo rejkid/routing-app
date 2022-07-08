@@ -10,24 +10,28 @@ import { distinctUntilChanged, interval, map, Observable } from 'rxjs';
   styleUrls: ['./first.component.css']
 })
 export class FirstComponent implements OnInit {
-  message: string;
+  message: Moment;
   sentAt: Date;
-  timeFromNow: Observable<string>;
+  timeFromNow: Observable<Moment>;
   pageLoaded: Moment;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.message = "";
+    this.message = moment(new Date());
     this.sentAt = new Date();
 
     this.pageLoaded = moment(new Date());
 
     this.timeFromNow = interval(1000).pipe(
       map(() => {
-        return moment(this.pageLoaded).fromNow(true);
+        return this.pageLoaded; // Get current date
+        //return moment(this.pageLoaded).fromNow(true);
       }
       ),
     );
-    this.timeFromNow.subscribe((value) => this.message = value);
+    this.timeFromNow.subscribe((value) => {
+      this.message = value;
+    }
+    );
   }
 
   ngOnInit(): void {

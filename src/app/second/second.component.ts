@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,10 @@ import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
   styleUrls: ['./second.component.css']
 })
 export class SecondComponent implements OnInit {
-
+/**
+   * @input productList - the Product[] passed to us
+   */
+ //@Input() productList: Product[];
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
