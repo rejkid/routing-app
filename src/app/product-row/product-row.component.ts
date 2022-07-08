@@ -20,11 +20,5 @@ export class ProductRowComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  mouseOver(){
-    console.log("Mouseover over");
-  }
-
-  mouseLeave(){
-    console.log("Mouseout called");
-  }
+  
 }
