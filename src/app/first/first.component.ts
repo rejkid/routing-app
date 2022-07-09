@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import moment from 'moment';
 import { Moment } from 'moment';
@@ -15,7 +16,13 @@ export class FirstComponent implements OnInit {
   timeFromNow: Observable<Moment>;
   pageLoaded: Moment;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  form: FormGroup;
+  loading = false;
+  submitted = false;
+
+  constructor(private activatedRoute: ActivatedRoute, 
+              private router: Router, 
+              private formBuilder: FormBuilder) {
     this.message = moment(new Date());
     this.sentAt = new Date();
 
@@ -32,10 +39,21 @@ export class FirstComponent implements OnInit {
       this.message = value;
     }
     );
+
+    this.form = this.formBuilder.group({
+      'username': ['', Validators.required],
+      'password': ['', Validators.required]
+    });
   }
+  // convenience getter for easy access to form fields
+  get f() { return this.form.controls; }
 
+  onSubmit(name: any) {
+    this.submitted = true;
+    let passwordEnc64 = btoa(this.f['password'].value);
+  }
   ngOnInit(): void {
-
+    
     this.activatedRoute.queryParams.subscribe((params) => {
       let paramMap = convertToParamMap(params);
       for (let index = 0; index < paramMap.keys.length; index++) {
@@ -49,7 +67,5 @@ export class FirstComponent implements OnInit {
         }
       }
     });
-
   }
-
 }

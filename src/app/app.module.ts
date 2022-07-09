@@ -8,6 +8,7 @@ import { SecondComponent } from './second/second.component';
 import { FromNowPipe } from './pipes/from-now.pipe';
 import { SecondContentComponent } from './second-content-list/second-content.component';
 import { ProductRowComponent } from './product-row/product-row.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProductRowComponent } from './product-row/product-row.component';
     ProductRowComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule, // JD Comment
     AppRoutingModule
   ],
