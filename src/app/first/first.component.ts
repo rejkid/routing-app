@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Moment } from 'moment';
 import { distinctUntilChanged, interval, map, Observable } from 'rxjs';
 
