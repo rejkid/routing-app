@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+<<<<<<< HEAD
 
+=======
+import moment from 'moment';
+import { Moment } from 'moment';
+>>>>>>> Branch_5be20725
 import { distinctUntilChanged, interval, map, Observable } from 'rxjs';
 
 @Component({
