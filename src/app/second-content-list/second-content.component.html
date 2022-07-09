@@ -3,7 +3,7 @@
   <app-product-row *ngFor="let myProduct of productList | async" 
     [product]="myProduct" 
     (click)='clicked(myProduct)'
-    [ngClass]="{ 'text-secondary': isSelected(myProduct) }"
+    [ngClass]="{ 'text-primary': isSelected(myProduct) }"
     (mouseover)='mouseOver(myProduct)' (mouseleave)='mouseLeave(myProduct)'
     >
   </app-product-row>
