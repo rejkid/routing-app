@@ -55,12 +55,12 @@ export class FirstComponent implements OnInit {
 
     return null;
 }
-  onSubmit(name: any) {
+  onSubmit(value: any) {
     this.submitted = true;
     let erros = this.f['password'].errors;
     
     let passwordEnc64 = btoa(this.f['password'].value);
-    console.log(name.password, name.username);
+    console.log(value.password, value.username);
   }
   ngOnInit(): void {
     
