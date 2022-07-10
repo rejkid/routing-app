@@ -1,6 +1,6 @@
 <p>first works! for {{ message | fromNow}}</p>
 <div class="card-body">
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
@@ -18,6 +18,16 @@
                 <div *ngIf="f['password'].errors['cannotContainSpace']">Password can not contain space.</div>
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="useremail">User E-mail</label>
+            <input type="email" name="email" ngModel email formControlName="useremail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div *ngIf="submitted && f['useremail'].errors" class="invalid-feedback">
+                <div *ngIf="f['useremail'].errors['required']">E-mail is required</div>
+                <small *ngIf="f['useremail'].errors?.['pattern']" class="text-danger">Please provide a valid email address</small>
+            </div>
+        </div>
+
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary mt-1" type="submit">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

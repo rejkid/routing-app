@@ -16,7 +16,7 @@ export class FirstComponent implements OnInit {
   timeFromNow: Observable<Moment>;
   pageLoaded: Moment;
 
-  form: FormGroup;
+  myForm: FormGroup;
   loading = false;
   submitted = false;
 
@@ -40,13 +40,14 @@ export class FirstComponent implements OnInit {
     }
     );
 
-    this.form = this.formBuilder.group({
+    this.myForm = this.formBuilder.group({
       'username': ['', Validators.required],
-      'password': ['', [Validators.required , Validators.minLength(7), this.cannotContainSpace]]
+      'password': ['', [Validators.required , Validators.minLength(7), this.cannotContainSpace]],
+      'useremail': ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     });
   }
   // convenience getter for easy access to form fields
-  get f() { return this.form.controls; }
+  get f() { return this.myForm.controls; }
 
    cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
     if((control.value as string).indexOf(' ') >= 0){
@@ -57,10 +58,11 @@ export class FirstComponent implements OnInit {
 }
   onSubmit(value: any) {
     this.submitted = true;
-    let erros = this.f['password'].errors;
+    let passwordErros = this.f['password'].errors;
+    let emailErros = this.f['useremail'].errors;
     
     let passwordEnc64 = btoa(this.f['password'].value);
-    console.log(value.password, value.username);
+    console.log(value.password, value.username, value.userEmail);
   }
   ngOnInit(): void {
     
