@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import moment from 'moment';
 import { Moment } from 'moment';
@@ -42,15 +42,25 @@ export class FirstComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       'username': ['', Validators.required],
-      'password': ['', Validators.required]
+      'password': ['', [Validators.required , Validators.minLength(7), this.cannotContainSpace]]
     });
   }
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
+   cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
+    if((control.value as string).indexOf(' ') >= 0){
+        return {cannotContainSpace: true}
+    }
+
+    return null;
+}
   onSubmit(name: any) {
     this.submitted = true;
+    let erros = this.f['password'].errors;
+    
     let passwordEnc64 = btoa(this.f['password'].value);
+    console.log(name.password, name.username);
   }
   ngOnInit(): void {
     
