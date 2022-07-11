@@ -61,7 +61,7 @@ export class FirstComponent implements OnInit {
     let passwordErros = this.f['password'].errors;
     let emailErros = this.f['useremail'].errors;
     
-    let passwordEnc64 = btoa(this.f['password'].value);
+    let passwordEnc64 = btoa(this.f['password'].value); // TODO to be removed
     console.log(value.password, value.username, value.userEmail);
   }
   ngOnInit(): void {
