@@ -43,7 +43,7 @@ export class FirstComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       'username': ['', Validators.required],
       'password': ['', [Validators.required , Validators.minLength(7), this.cannotContainSpace]],
-      'useremail': ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      'useremail': ['', [Validators.required, Validators.email]],
     });
   }
   // convenience getter for easy access to form fields
@@ -53,11 +53,11 @@ export class FirstComponent implements OnInit {
     if((control.value as string).indexOf(' ') >= 0){
         return {cannotContainSpace: true}
     }
-
     return null;
 }
   onSubmit(value: any) {
     this.submitted = true;
+    let userErros = this.f['username'].errors;
     let passwordErros = this.f['password'].errors;
     let emailErros = this.f['useremail'].errors;
     

@@ -3,15 +3,19 @@
     <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
-            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+            <input id="username-first" type="text" formControlName="username" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"  
+                [ngClass]="{ 'is-valid': submitted && f['username'].valid}" />
+            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback" style="display:block;">
                 <div *ngIf="f['username'].errors['required']">Username is required</div>
             </div>
-             
+
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <input type="password" formControlName="password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" 
+                [ngClass]="{ 'is-valid': submitted && f['password'].valid}" />
             <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                 <div *ngIf="f['password'].errors['required']">Password is required</div>
                 <div *ngIf="f['password'].errors['minlength']"> Password must be at least 7 characters long.</div>
@@ -21,10 +25,13 @@
 
         <div class="form-group">
             <label for="useremail">User E-mail</label>
-            <input type="email" name="email" ngModel email formControlName="useremail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <input type="email" formControlName="useremail" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['useremail'].errors }" 
+                [ngClass]="{ 'is-valid': submitted && f['useremail'].valid}" />
             <div *ngIf="submitted && f['useremail'].errors" class="invalid-feedback">
                 <div *ngIf="f['useremail'].errors['required']">E-mail is required</div>
-                <small *ngIf="f['useremail'].errors?.['pattern']" class="text-danger">Please provide a valid email address</small>
+                <div *ngIf="f['useremail'].errors?.['email']" class="text-danger">Please provide a valid email address
+                </div>
             </div>
         </div>
 
@@ -33,11 +40,8 @@
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Login
             </button>
-            <!--button [disabled]="loading" class="btn btn-primary" type="submit">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                Login1
-            </button-->
-            <a routerLink="../register" class="btn btn-link">Register</a>
         </div>
+        <img src="assets/images/test/download.png" alt="Tick image">
+
     </form>
 </div>
