@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
-import { from, interval, Observable, of, map, scan, take, concatMap, timer } from 'rxjs';
+import { share, from, interval, Observable, of, map, scan, take, concatMap, timer, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -536,25 +536,29 @@ export class AppComponent {
      */
 
     // Hot observable example
-    /*     let liveStreaming$ = interval(1000).pipe(
-          take(5),
-          share({connector: () => new ReplaySubject(1),
-          resetOnComplete: false,})
-          );
-        
-        liveStreaming$.subscribe({
-          next: data => console.log('subscriber from first: ' + this.first++),
-          error: err => console.log(err),
-          complete: () => console.log('first completed')
-        })
-        
-        setTimeout(() => {
-          liveStreaming$.subscribe({
-            next: data => console.log('subscriber from 2nd: ' + this.second++),
-            error: err => console.log(err),
-            complete: () => console.log('2nd  completed')
-          })
-        }, 3000) */
+    let first = 0;
+    let second = 0;
+    let liveStreaming$ = interval(1000).pipe(
+      take(5),
+      share({
+        connector: () => new ReplaySubject(1),
+        resetOnComplete: false,
+      })
+    );
+
+    liveStreaming$.subscribe({
+      next: data => console.log('subscriber from first: ' + first++),
+      error: err => console.log(err),
+      complete: () => console.log('first completed')
+    })
+
+    setTimeout(() => {
+      liveStreaming$.subscribe({
+        next: data => console.log('subscriber from 2nd: ' + second++),
+        error: err => console.log(err),
+        complete: () => console.log('2nd  completed')
+      })
+    }, 3000)
 
 
     // Hot observable example with connectable
