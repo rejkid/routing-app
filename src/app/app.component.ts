@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
-import { share, from, interval, Observable, of, map, scan, take, concatMap, timer, ReplaySubject } from 'rxjs';
+import { share, from, interval, Observable, of, map, scan, take, concatMap, timer, ReplaySubject, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -451,7 +451,7 @@ export class AppComponent {
     observable.subscribe(observer2);
  */     
     // concatMap example
-    const src = of(1, 2, 3);
+/*     const src = of(1, 2, 3);
 
     const result = src.pipe(
       map( (src :number) => src*10)
@@ -467,11 +467,11 @@ export class AppComponent {
     let innerObservable= of('A','B','C','D')
     // For every number will emit 4 letters 
     srcObservable.pipe(
-      concatMap( val => innerObservable/* interval(1000).pipe(take(4)) */)
+      concatMap( val => innerObservable)
     )    
     .subscribe(ret=> {
       console.log('Recd ' + ret);
-    })
+    }) */
     
     
     // function as a property of an object literal.
@@ -536,7 +536,7 @@ export class AppComponent {
      */
 
     // Hot observable example
-    let first = 0;
+/*     let first = 0;
     let second = 0;
     let liveStreaming$ = interval(1000).pipe(
       take(5),
@@ -558,7 +558,7 @@ export class AppComponent {
         error: err => console.log(err),
         complete: () => console.log('2nd  completed')
       })
-    }, 3000)
+    }, 3000) */
 
 
     // Hot observable example with connectable
@@ -603,11 +603,11 @@ export class AppComponent {
         */
 
     // 'scan' test using events
-    // var clicks = fromEvent(document, 'click');
-    // var ones = clicks.pipe(mapTo(1));
-    // var seed = 0;
-    // var count = ones.pipe(scan((acc, one) => acc + one, seed));
-    // count.subscribe(x => console.log(x));
+/*     var clicks = fromEvent(document, 'click');
+    var ones = clicks.pipe(map(value => 1));
+    var seed = 0;
+    var count = ones.pipe(scan((acc, one) => acc + one, seed));
+    count.subscribe(x => console.log(x)); */
 
     // interface IMessagesOperation {
     //   (messages: number[]): number[];
