@@ -463,16 +463,12 @@ export class AppComponent {
       console.log(value)
     });
 
-    let srcObservable= of(1,2,3,4)
+    let srcObservable= of(1,2)
     let innerObservable= of('A','B','C','D')
-     
+    // For every number will emit 4 letters 
     srcObservable.pipe(
-      concatMap( val => {
-        console.log('Source value '+val)
-        console.log('starting new observable')
-        return innerObservable
-      })
-    )
+      concatMap( val => innerObservable/* interval(1000).pipe(take(4)) */)
+    )    
     .subscribe(ret=> {
       console.log('Recd ' + ret);
     })
