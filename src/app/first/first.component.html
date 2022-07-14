@@ -4,9 +4,8 @@
         <div class="form-group">
             <label for="username">Username</label>
             <input id="username-first" type="text" formControlName="username" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"  
-                [ngClass]="{ 'is-valid': submitted && f['username'].valid}" />
-            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback" style="display:block;">
+                [ngClass]="{ 'is-invalid': submitted && f['username'].errors, 'is-valid': submitted && f['username'].valid }" />
+            <div *ngIf="submitted && f['username'].errors" class="text-danger">
                 <div *ngIf="f['username'].errors['required']">Username is required</div>
             </div>
 
@@ -14,9 +13,8 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" formControlName="password" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" 
-                [ngClass]="{ 'is-valid': submitted && f['password'].valid}" />
-            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors, 'is-valid': submitted && f['password'].valid }" />
+            <div *ngIf="submitted && f['password'].errors" class="text-danger">
                 <div *ngIf="f['password'].errors['required']">Password is required</div>
                 <div *ngIf="f['password'].errors['minlength']"> Password must be at least 7 characters long.</div>
                 <div *ngIf="f['password'].errors['cannotContainSpace']">Password can not contain space.</div>
@@ -26,11 +24,10 @@
         <div class="form-group">
             <label for="useremail">User E-mail</label>
             <input type="email" formControlName="useremail" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['useremail'].errors }" 
-                [ngClass]="{ 'is-valid': submitted && f['useremail'].valid}" />
-            <div *ngIf="submitted && f['useremail'].errors" class="invalid-feedback">
+                [ngClass]="{ 'is-invalid': submitted && f['useremail'].errors, 'is-valid': submitted && f['useremail'].valid }"/>
+            <div *ngIf="submitted && f['useremail'].errors" class="text-danger">
                 <div *ngIf="f['useremail'].errors['required']">E-mail is required</div>
-                <div *ngIf="f['useremail'].errors?.['email']" class="text-danger">Please provide a valid email address
+                <div *ngIf="f['useremail'].errors?.['email']">Please provide a valid email address
                 </div>
             </div>
         </div>

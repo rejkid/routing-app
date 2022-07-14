@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, Params, Router } from '@angular/router';
 import moment from 'moment';
 import { Moment } from 'moment';
 import { distinctUntilChanged, interval, map, Observable } from 'rxjs';
@@ -66,7 +66,7 @@ export class FirstComponent implements OnInit {
   }
   ngOnInit(): void {
     
-    this.activatedRoute.queryParams.subscribe((params) => {
+    this.activatedRoute.queryParams.subscribe((params : Params) => {
       let paramMap = convertToParamMap(params);
       for (let index = 0; index < paramMap.keys.length; index++) {
         let key = paramMap.keys[index];
